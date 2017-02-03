@@ -1,2 +1,3 @@
 pom.xml
 Hibernate_Spring.iml
+target/*
