@@ -8,7 +8,7 @@
     <title>JLG</title>
     <spring:url value="/resources/css/style.css" var="mainCss"/>
     <link href="${mainCss}" rel="stylesheet"/>
-    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
 </head>
 <body xmlns:jsp="http://java.sun.com/JSP/Page">
 <jsp:include page="nav.jsp"/>

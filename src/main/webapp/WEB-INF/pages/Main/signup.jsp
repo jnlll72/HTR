@@ -8,7 +8,7 @@
     <title>HTR</title>
     <spring:url value="/resources/css/style.css" var="mainCss"/>
     <link href="${mainCss}" rel="stylesheet"/>
-    <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
 </head>
 <body xmlns:jsp="http://java.sun.com/JSP/Page">
 <jsp:include page="nav.jsp"/>
@@ -17,13 +17,10 @@
     <form:form class="form-horizontal" method="POST" modelAttribute="User" action="/JLG/addUser">
         <fieldset>
             <legend>Sign up</legend>
-            <!--<form:errors path="*" cssClass="error" element="div"/>-->
+            <form:errors path="*" cssClass="error" element="div"/>
             <div class="form-group">
                 <label class="col-lg-2 control-label">Nom*</label>
                 <div class="col-lg-10">
-                    <c:if test="${errNom}">
-                        <label class="control-label"><c:out value="${errNom}"/></label>
-                    </c:if>
                     <form:input class="form-control" path="nom" placeholder="Nom"/>
                 </div>
             </div>

@@ -2,6 +2,6 @@
     color:red;
 }
 
-.navbar-right{
-    margin-right:20px !important;
+.navbar{
+    border-radius:0 !important;
 }

@@ -67,9 +67,6 @@ public class MainController {
 
         /*user.validate(user, result);*/
         if (result.hasErrors()) {
-            if(user.getNom() == null){
-                modelMap.addAttribute("errNom","champs obligatoire");
-            }
             return "Main/signup";
         }
 
