@@ -1,10 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<nav class="navbar navbar-inverse" xmlns:c="http://www.w3.org/1999/html">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<nav class="navbar" xmlns:c="http://www.w3.org/1999/html">
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="home">Home</a></li>
-                <li><a href="#">Forum</a></li>
+                <li><a href="/JLG/">Home</a></li>
+                <li><a href="forum">Forum</a></li>
                 <li><a href="#">Generator</a></li>
             </ul>
 
@@ -19,9 +20,9 @@
                             <c:out value="${sessionScope.User.prenom}"/>
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
+                            <li><a href="account">Mon compte</a></li>
                             <li class="divider"></li>
-                            <li><a href="logout">Logout</a></li>
+                            <li><a href="logout">Déconnexion</a></li>
                         </ul>
                     </li>
                 </c:if>

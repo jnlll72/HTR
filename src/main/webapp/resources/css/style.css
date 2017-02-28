@@ -1,7 +1,24 @@
-.error{
-    color:red;
+.error {
+  color: #e50914 !important;
 }
-
-.navbar{
-    border-radius:0 !important;
+.navbar {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: #292f33 !important;
+}
+.nav > li > a {
+  color: #ffffff !important;
+  margin-bottom: 1px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  color: #55acee !important;
+  background-color: #292f33 !important;
+  border-bottom: 1px solid #ffffff !important;
+  margin-bottom: 0px;
+}
+.active {
+  color: #55acee;
+  background-color: #292f33 !important;
+  border-bottom: 1px solid #ffffff !important;
 }

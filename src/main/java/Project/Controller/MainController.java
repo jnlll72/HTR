@@ -23,15 +23,15 @@ public class MainController {
         return "Main/index";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "home")
-    public String home(ModelMap modelMap, HttpSession httpSession) {
-        return "Main/home";
-    }
-
     @RequestMapping(method = RequestMethod.GET, value = "login")
     public String login(ModelMap modelMap, HttpSession httpSession) {
         modelMap.addAttribute("User", new User());
         return "Main/login";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "forum")
+    public String forum(ModelMap modelMap, HttpSession httpSession) {
+        return "Main/forum";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "signup")
@@ -62,6 +62,12 @@ public class MainController {
         return "redirect:/";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/account")
+    public String account(HttpSession httpSession, ModelMap modelMap) {
+        modelMap.addAttribute("User", httpSession.getAttribute("User"));
+        return "Main/account";
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/addUser")
     public String addUser(@ModelAttribute("User") @Valid User user, BindingResult result, ModelMap modelMap, HttpSession httpSession) {
 
@@ -74,6 +80,18 @@ public class MainController {
 
         userService.add(user);
         return "Main/login";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/updateUser")
+    public String updateUser(@ModelAttribute("User") @Valid User user, BindingResult result, ModelMap modelMap, HttpSession httpSession) {
+
+        /*user.validate(user, result);*/
+        if (result.hasErrors()) {
+            return "Main/account";
+        }
+
+        userService.add(user);
+        return "redirect:/";
     }
 
     public static String encodeSHA512(String plainPassword) {

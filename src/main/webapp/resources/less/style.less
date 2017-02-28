@@ -1,0 +1,38 @@
+@blue : #55ACEE;
+@black : #292F33;
+@gray : #66757F;
+@gray2 : #CCD6DD;
+@gray3 : #E1E8ED;
+@white : #FFFFFF;
+
+@red : #E50914;
+
+.error{
+    color:@red !important;
+}
+
+.navbar{
+    border:0 !important;
+    border-radius:0 !important;
+    background-color:@black !important;
+}
+
+.nav>li>a{
+    color:@white !important;
+    margin-bottom:1px;
+}
+
+.nav>li>a{
+    &:hover, &:focus{
+        color:@blue !important;
+        background-color:@black !important;
+        border-bottom:1px solid @white !important;
+        margin-bottom:0px;
+    }
+}
+
+.active{
+    color:@blue;
+    background-color:@black !important;
+    border-bottom:1px solid @white !important;
+}
