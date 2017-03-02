@@ -17,8 +17,9 @@
   border-bottom: 1px solid #ffffff !important;
   margin-bottom: 0px;
 }
-.active {
-  color: #55acee;
-  background-color: #292f33 !important;
-  border-bottom: 1px solid #ffffff !important;
+.searchBar {
+  margin-bottom: 20px;
+}
+.badgesForum {
+  float: right;
 }

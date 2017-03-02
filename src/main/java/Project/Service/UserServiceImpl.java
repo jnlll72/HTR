@@ -19,6 +19,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void update(User user) {
+        userDAO.update(user);
+    }
+
+    @Override
     public User getByEmailPwd(String email, String pwd) {
         return userDAO.getByEmailPwd(email, pwd);
     }

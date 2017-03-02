@@ -7,6 +7,7 @@
 <head>
     <title>HTR</title>
     <spring:url value="/resources/css/style.css" var="mainCss"/>
+    <spring:url value="/resources/js/script.js" var="mainJs" />
     <link href="${mainCss}" rel="stylesheet"/>
     <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
 </head>
@@ -14,9 +15,10 @@
 <jsp:include page="nav.jsp"/>
 
 <div class="container">
+    <blockquote>
+        <p>INSCRIPTION</p>
+    </blockquote>
     <form:form class="form-horizontal" method="POST" modelAttribute="User" action="/JLG/addUser">
-        <fieldset>
-            <legend>Sign up</legend>
             <form:errors path="*" cssClass="error" element="div"/>
             <div class="form-group">
                 <label class="col-lg-2 control-label">Nom*</label>
@@ -48,11 +50,11 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-        </fieldset>
     </form:form>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${mainJs}"></script>
 </body>
 </html>

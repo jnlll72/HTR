@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
@@ -71,6 +72,11 @@ public class User implements Serializable {
     @Getter
     @Setter
     private String pwd;
+
+    @OneToMany(mappedBy = "user")
+    @Getter
+    @Setter
+    private List<Message> messages;
 
     public User() {
     }

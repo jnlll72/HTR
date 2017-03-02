@@ -20,6 +20,12 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public void update(User user) {
+        System.out.println(user);
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
+    }
+
+    @Override
     public User getByEmailPwd(String email, String pwd) {
         javax.persistence.Query query = sessionFactory.getCurrentSession().createQuery("from User m where email = :email and pwd = :pwd");
         query.setParameter("email", email);

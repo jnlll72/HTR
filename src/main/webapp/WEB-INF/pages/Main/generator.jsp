@@ -5,19 +5,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8"/>
-    <title>JLG</title>
+    <title>HTR</title>
     <spring:url value="/resources/css/style.css" var="mainCss"/>
     <spring:url value="/resources/js/script.js" var="mainJs" />
     <link href="${mainCss}" rel="stylesheet"/>
-    <link rel="stylesheet" href="http://bootswatch.com/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
 </head>
 <body xmlns:jsp="http://java.sun.com/JSP/Page">
 <jsp:include page="nav.jsp"/>
 
 <div class="container">
     <blockquote>
-        <p>BIENVENUE</p>
+        <p>GENERATOR</p>
     </blockquote>
 </div>
 

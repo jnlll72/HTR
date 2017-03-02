@@ -5,14 +5,16 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/JLG/">Home</a></li>
-                <li><a href="forum">Forum</a></li>
-                <li><a href="#">Generator</a></li>
+                <li><a href="/JLG/forum">Forum</a></li>
+                <c:if test="${not empty sessionScope.User}">
+                    <li><a href="generator">Generator</a></li>
+                </c:if>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${empty sessionScope.User}">
-                    <li><a href="signup">Sign up</a></li>
-                    <li><a href="login">Log in</a></li>
+                    <li><a href="/JLG/signup">Sign up</a></li>
+                    <li><a href="/JLG/login">Log in</a></li>
                 </c:if>
                 <c:if test="${not empty sessionScope.User}">
                     <li class="dropdown">
@@ -20,9 +22,9 @@
                             <c:out value="${sessionScope.User.prenom}"/>
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="account">Mon compte</a></li>
+                            <li><a href="/JLG/account">Mon compte</a></li>
                             <li class="divider"></li>
-                            <li><a href="logout">Déconnexion</a></li>
+                            <li><a href="/JLG/logout">Déconnexion</a></li>
                         </ul>
                     </li>
                 </c:if>
