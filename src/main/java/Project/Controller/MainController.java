@@ -110,6 +110,7 @@ public class MainController {
     public String addUser(@ModelAttribute("User") @Valid User user, BindingResult result, ModelMap modelMap, HttpSession httpSession) {
 
         if (result.hasErrors()) {
+            System.out.println("NOK");
             return "Main/signup";
         }
 

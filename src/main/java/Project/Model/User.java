@@ -47,21 +47,19 @@ public class User implements Serializable {
     @Email(message = "Email non valide")
     private String email;
 
-    @NotNull
-    @Column(name = "date")
+    @Column(name = "date", nullable = true)
     @Getter
     @Setter
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
-    @NotEmpty
-    @Column(name = "ville")
+
+    @Column(name = "ville", nullable = true)
     @Getter
     @Setter
     private String ville;
 
-    @NotNull
-    @Column(name = "vma")
+    @Column(name = "vma", nullable = true)
     @Getter
     @Setter
     private float VMA;
@@ -81,13 +79,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String nom, String prenom, String email, String pwd, Date date, String ville, float vma) {
+    public User(String nom, String prenom, String email, String pwd) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.pwd = pwd;
-        this.date = date;
-        this.ville = ville;
-        this.VMA = vma;
     }
 }

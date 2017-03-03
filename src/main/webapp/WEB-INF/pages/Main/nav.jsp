@@ -2,7 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar" xmlns:c="http://www.w3.org/1999/html">
     <div class="container">
-        <div class="collapse navbar-collapse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">HTR</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/JLG/">Home</a></li>
                 <li><a href="/JLG/forum">Forum</a></li>
@@ -18,7 +27,8 @@
                 </c:if>
                 <c:if test="${not empty sessionScope.User}">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bonjour
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">Bonjour
                             <c:out value="${sessionScope.User.prenom}"/>
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
