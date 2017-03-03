@@ -18,26 +18,30 @@
     <blockquote>
         <p>CONNEXION</p>
     </blockquote>
-    <form class="form-horizontal" method="POST" action="/JLG/getUser">
-        <div class="form-group">
-            <label class="col-lg-2 control-label">Email</label>
-            <div class="col-lg-10">
-                <input type="email" name="email" class="form-control" placeholder="Email"/>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form class="form-horizontal" method="POST" action="/JLG/getUser">
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Email</label>
+                <div class="col-lg-10">
+                    <input type="email" name="email" class="form-control" placeholder="Email"/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-2 control-label">Mot de passe</label>
-            <div class="col-lg-10">
-                <input type="password" name="pwd" class="form-control" placeholder="Password"/>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Password</label>
+                <div class="col-lg-10">
+                    <input type="password" name="pwd" class="form-control" placeholder="Password"/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-                <button type="reset" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="reset" class="btn btn-default">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

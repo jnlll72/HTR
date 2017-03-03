@@ -1,12 +1,13 @@
 package Project.DAO;
 
+import Project.Model.Article;
 import Project.Model.Forum;
-import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,5 +32,16 @@ public class ForumDAOImpl implements ForumDAO {
             return null;
         }
 
+    }
+
+    @Override
+    public long add(Forum forum) {
+        Serializable id = sessionFactory.getCurrentSession().save(forum);
+        return (Long) id;
+    }
+
+    @Override
+    public Forum get(long id) {
+        return sessionFactory.getCurrentSession().get(Forum.class, id);
     }
 }

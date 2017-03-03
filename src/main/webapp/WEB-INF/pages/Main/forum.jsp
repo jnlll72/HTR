@@ -21,9 +21,8 @@
     </blockquote>
 
     <div class="col-md-12 searchBar">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nouvel
-            article
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newForum">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nouveau forum
         </button>
     </div>
 
@@ -33,28 +32,35 @@
                 <c:forEach var="forum" items="${listForum}">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="panel-title">
+                            <span class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse-${forum.id}">
                                     <c:out value="${forum.titre}"/>
                                 </a>
-
-                                <ul class="nav nav-pills badgesForum" role="tablist">
-                                    <li role="presentation">Articles <span
-                                            class="badge">${fn:length(forum.articles)}</span></li>
-                                </ul>
-                            </h4>
+                            </span>
+                            <ul class="nav nav-pills badgesForum" role="tablist">
+                                <li role="presentation">Articles <span
+                                        class="badge">${fn:length(forum.articles)}</span></li>
+                            </ul>
                         </div>
-                        <c:if test="${not empty forum.articles}">
-                            <div id="collapse-${forum.id}" class="panel-collapse collapse">
-                                <ul class="list-group">
-                                    <c:forEach var="article" items="${forum.articles}">
-                                        <li class="list-group-item"><a href="article/${article.id}">
-                                            <c:out value="${article.sujet}"/>
-                                        </a></li>
-                                    </c:forEach>
-                                </ul>
+                        <div id="collapse-${forum.id}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <c:if test="${not empty forum.articles}">
+                                    <ul class="list-group">
+                                        <c:forEach var="article" items="${forum.articles}">
+                                            <li class="list-group-item"><a href="article/${article.id}">
+                                                <c:out value="${article.sujet}"/>
+                                            </a></li>
+                                        </c:forEach>
+                                    </ul>
+                                </c:if>
                             </div>
-                        </c:if>
+                            <div class="panel-footer">
+                                <button type="button" class="btn btn-default addNewArticle" data-toggle="modal"
+                                        data-forum-id="${forum.id}" data-target="#newArticle">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nouvel article
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </c:forEach>
             </div>
@@ -64,25 +70,55 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="newForum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title col-md-4" id="exampleModalLabel">Nouvel Article</h5>
+                <h5 class="modal-title col-md-4" id="forum">Nouveau forum</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="usr">Titre de l'article :</label>
-                    <input type="text" class="form-control" id="usr">
+            <form:form method="POST" modelAttribute="Forum" action="/JLG/addForum">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="titre">Titre du forum :</label>
+                        <form:input class="form-control" path="titre" id="titre"/>
+                    </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form:form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title col-md-4" id="article">Nouvel Article</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <a href="#" class="btn btn-info" role="button">Enregistrer</a>
-            </div>
+            <form:form method="POST" modelAttribute="Article" action="/JLG/addArticle">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="titre">Sujet de l'article :</label>
+                        <input type="hidden" class="form-control" name="forum_id" id="forum_id"/>
+                        <form:input class="form-control" path="sujet" id="sujet"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form:form>
         </div>
     </div>
 </div>

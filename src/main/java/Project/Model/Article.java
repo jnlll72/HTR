@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -32,10 +33,9 @@ public class Article implements Serializable {
     @JoinColumn(name = "forum_id")
     @Getter
     @Setter
-    @NotEmpty
     private Forum forum;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "article")
     @Getter
     @Setter
     private List<Message> messages;
@@ -47,5 +47,13 @@ public class Article implements Serializable {
         this.id = id;
         this.sujet = sujet;
         this.forum = forum;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", sujet='" + sujet + '\'' +
+                '}';
     }
 }

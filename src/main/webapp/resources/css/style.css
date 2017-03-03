@@ -23,3 +23,31 @@
 .badgesForum {
   float: right;
 }
+.message {
+  height: 100px;
+  border: 1px solid #ccd6dd;
+  margin-bottom: 10px;
+  padding: 0 !important;
+}
+.header-message {
+  background-color: #ffffff;
+  color: #55acee;
+  height: 30px;
+  border-bottom: 1px solid #ccd6dd;
+  line-height: 2;
+}
+.header-message > span {
+  margin-left: 10px;
+}
+.indexLoop {
+  float: right;
+  margin-right: 10px;
+  color: #66757f;
+}
+.areaContenu {
+  resize: vertical;
+}
+.body-message {
+  margin: 10px;
+  word-wrap: break-word;
+}

@@ -2,10 +2,12 @@ package Project.Model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -30,14 +32,19 @@ public class Message implements Serializable {
     @JoinColumn(name = "user_id")
     @Getter
     @Setter
-    @NotEmpty
     private User user;
+
+    @CreationTimestamp
+    @Column(name="created")
+    @Getter
+    @Setter
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    private Date created;
 
     @ManyToOne
     @JoinColumn(name = "article_id")
     @Getter
     @Setter
-    @NotEmpty
     private Article article;
 
     public Message() {

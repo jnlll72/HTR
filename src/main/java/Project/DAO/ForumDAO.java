@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface ForumDAO {
     public List<Forum> getAll();
+
+    public long add(Forum forum);
+
+    public Forum get(long id);
 }

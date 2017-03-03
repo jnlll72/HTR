@@ -40,4 +40,12 @@ public class Forum implements Serializable {
         this.titre = titre;
         this.articles = new ArrayList<Article>();
     }
+
+    @Override
+    public String toString() {
+        return "Forum{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                '}';
+    }
 }

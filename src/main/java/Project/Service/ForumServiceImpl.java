@@ -19,4 +19,14 @@ public class ForumServiceImpl implements ForumService {
     public List<Forum> getAll() {
         return forumDAO.getAll();
     }
+
+    @Override
+    public long add(Forum forum) {
+        return forumDAO.add(forum);
+    }
+
+    @Override
+    public Forum get(long id) {
+        return forumDAO.get(id);
+    }
 }
