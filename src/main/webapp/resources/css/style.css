@@ -52,3 +52,6 @@
   word-wrap: break-word;
   padding-bottom: 20px;
 }
+th {
+  text-align: center;
+}

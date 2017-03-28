@@ -16,7 +16,7 @@
                 <li><a href="/JLG/">Home</a></li>
                 <li><a href="/JLG/forum">Forum</a></li>
                 <c:if test="${not empty sessionScope.User}">
-                    <li><a href="generator">Generator</a></li>
+                    <li><a href="/JLG/generator">Generator</a></li>
                 </c:if>
             </ul>
 

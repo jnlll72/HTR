@@ -129,12 +129,12 @@ public class MainController {
 
     @RequestMapping(method = RequestMethod.GET, value = "generator")
     public String generator(ModelMap modelMap, HttpSession httpSession) {
-        /*modelMap.addAttribute("User", httpSession.getAttribute("User"));
+        modelMap.addAttribute("User", httpSession.getAttribute("User"));
 
-        if (httpSession.getAttribute("User") != null) {
-            return "Main/generator";
+        if (httpSession.getAttribute("User") == null) {
+            return "redirect:/";
         }
-        return "redirect:/";*/
+
         return "Main/generator";
     }
 
