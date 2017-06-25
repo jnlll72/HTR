@@ -19,50 +19,6 @@
         <p>GENERATOR</p>
     </blockquote>
 
-    <div class="planning">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>LUNDI</th>
-                <th>MARDI</th>
-                <th>MERCREDI</th>
-                <th>JEUDI</th>
-                <th>VENDREDI</th>
-                <th>SAMEDI</th>
-                <th>DIMANCHE</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
 
 </div>
 
