@@ -31,7 +31,6 @@ public class ForumDAOImpl implements ForumDAO {
         } catch (Exception e) {
             return null;
         }
-
     }
 
     @Override

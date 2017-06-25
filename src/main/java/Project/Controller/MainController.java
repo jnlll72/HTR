@@ -1,13 +1,7 @@
 package Project.Controller;
 
-import Project.Model.Article;
-import Project.Model.Forum;
-import Project.Model.Message;
-import Project.Model.User;
-import Project.Service.ArticleService;
-import Project.Service.MessageService;
-import Project.Service.UserService;
-import Project.Service.ForumService;
+import Project.Model.*;
+import Project.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,6 +29,15 @@ public class MainController {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private TypeCourseService typeCourseService;
+
+    @Autowired
+    private PlanningService planningService;
+
+    @Autowired
+    private SeanceService seanceService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String main(ModelMap modelMap, HttpSession httpSession) {
@@ -68,6 +72,46 @@ public class MainController {
         modelMap.addAttribute("Message", new Message());
         return "Main/article";
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "generator")
+    public String planning(ModelMap modelMap, HttpSession httpSession) {
+
+
+        if (httpSession.getAttribute("User") == null) {
+            return "redirect:/";
+        }
+
+        Planning planning = new Planning();
+
+        List<TypeCourse> listTypeCourse = typeCourseService.getAll();
+
+        modelMap.addAttribute("Planning", planning);
+        modelMap.addAttribute("listTypeCourse", listTypeCourse);
+        return "Main/generator";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/addPlanning")
+    public String addPlanning(@RequestParam(value = "typeCourse_id") Integer typeCourse_id, @ModelAttribute("Planning") @Valid Planning planning, BindingResult result, ModelMap modelMap, HttpSession httpSession) {
+
+        User user = (User) httpSession.getAttribute("User");
+
+        /*if (result.hasErrors()) {
+            return "redirect:/generator";
+        }*/
+
+
+        planning.setTypeCourse(typeCourseService.get(typeCourse_id));
+        planning.setUser(user);
+
+        planning.setSeances(seanceService.get(planning.getUser().getVMA(), typeCourse_id));
+
+        planningService.add(planning);
+
+
+
+        return "redirect:/";
+    }
+
 
     @RequestMapping(method = RequestMethod.POST, value = "/addMessage")
     public String addMessage(@RequestParam(value = "article_id") long article_id, @ModelAttribute("Message") @Valid Message message, BindingResult result, ModelMap modelMap, HttpSession httpSession) {
@@ -127,7 +171,7 @@ public class MainController {
         return "Main/signup";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "generator")
+    /*@RequestMapping(method = RequestMethod.GET, value = "generator")
     public String generator(ModelMap modelMap, HttpSession httpSession) {
         modelMap.addAttribute("User", httpSession.getAttribute("User"));
 
@@ -136,7 +180,7 @@ public class MainController {
         }
 
         return "Main/generator";
-    }
+    }*/
 
     @RequestMapping(method = RequestMethod.POST, value = "/getUser")
     public String getUser(@RequestParam(value = "email") String email, @RequestParam(value = "pwd") String pwd, ModelMap modelMap, HttpSession httpSession) {
@@ -192,6 +236,12 @@ public class MainController {
 
     public static String encodeSHA512(String plainPassword) {
         return new ShaPasswordEncoder(512).encodePassword(plainPassword, null);
+    }
+
+    public static Integer generatePlanning(Planning planning) {
+
+
+        return 0;
     }
 
 }

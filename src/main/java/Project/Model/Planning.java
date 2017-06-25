@@ -2,11 +2,13 @@ package Project.Model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -34,25 +36,24 @@ public class Planning implements Serializable {
     @Setter
     private User user;
 
-    @CreationTimestamp
     @Column(name = "date_debut")
     @Getter
     @Setter
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_debut;
 
-    @CreationTimestamp
     @Column(name = "date_fin")
     @Getter
     @Setter
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_fin;
 
     @Column(name = "nb_semaine")
+    @DecimalMax("10.0")
     @Getter
     @Setter
-    @NotEmpty
-    private int nb_semaine;
+    @NotNull
+    private Integer nb_semaine;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "SeancePlanning", joinColumns = {
@@ -66,7 +67,7 @@ public class Planning implements Serializable {
     public Planning() {
     }
 
-    public Planning(TypeCourse typeCourse, User user, Date date_debut, Date date_fin, int nb_semaine) {
+    public Planning(TypeCourse typeCourse, User user, Date date_debut, Date date_fin, Integer nb_semaine) {
         this.typeCourse = typeCourse;
         this.user = user;
         this.date_debut = date_debut;

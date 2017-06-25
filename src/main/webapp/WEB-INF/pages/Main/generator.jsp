@@ -18,8 +18,45 @@
     <blockquote>
         <p>GENERATOR</p>
     </blockquote>
-
-
+    <form:form class="form-horizontal" method="POST" modelAttribute="Planning" action="/JLG/addPlanning">
+        <form:errors path="*" cssClass="error" element="div"/>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Date de début*</label>
+            <div class="col-lg-10">
+                <form:input type="date" class="form-control" path="date_debut" placeholder="Date de début"
+                            pattern="yyyy-MM-dd"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Date de fin*</label>
+            <div class="col-lg-10">
+                <form:input type="date" class="form-control" path="date_fin" placeholder="Date de fin"
+                            pattern="yyyy-MM-dd"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Séances / semaine*</label>
+            <div class="col-lg-10">
+                <form:input type="number" class="form-control" path="nb_semaine" placeholder=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Type de compétition*</label>
+            <div class="col-lg-10">
+                <select class="form-control" name="typeCourse_id" id="typeCourse_id">
+                    <c:forEach items="${listTypeCourse}" var="type_course">
+                        <option value="${type_course.id}">${type_course.intitule}</option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form:form>
 </div>
 
 

@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -32,39 +34,45 @@ public class Seance implements Serializable {
     private TypeCourse typeCourse;
 
     @Column(name = "seance")
+    @DecimalMax("10000.0")
     @Getter
     @Setter
-    @NotEmpty
+    @NotNull
     private long seance;
 
     @Column(name = "rep_min")
+    @DecimalMax("20.0")
     @Getter
     @Setter
-    private int rep_min;
+    private Integer rep_min;
 
     @Column(name = "rep_max")
+    @DecimalMax("20.0")
     @Getter
     @Setter
-    @NotEmpty
-    private int rep_max;
+    @NotNull
+    private Integer rep_max;
 
     @Column(name = "nb_serie")
+    @DecimalMax("10.0")
     @Getter
     @Setter
-    @NotEmpty
-    private int nb_serie;
+    @NotNull
+    private Integer nb_serie;
 
     @Column(name = "vma_max")
+    @DecimalMax("25.0")
     @Getter
     @Setter
-    @NotEmpty
-    private int vma_max;
+    @NotNull
+    private double vma_max;
 
     @Column(name = "pourcentage_vma")
+    @DecimalMax("120.0")
     @Getter
     @Setter
-    @NotEmpty
-    private int pourcentage_vma;
+    @NotNull
+    private Integer pourcentage_vma;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "seances")
     @Getter
@@ -75,7 +83,7 @@ public class Seance implements Serializable {
     public Seance() {
     }
 
-    public Seance(TypeSeance typeSeance, TypeCourse typeCourse, long seance, int rep_min, int rep_max, int nb_serie, int vma_max, int pourcentage_vma) {
+    public Seance(TypeSeance typeSeance, TypeCourse typeCourse, long seance, Integer rep_min, Integer rep_max, Integer nb_serie, Integer vma_max, Integer pourcentage_vma) {
         this.typeSeance = typeSeance;
         this.typeCourse = typeCourse;
         this.seance = seance;
