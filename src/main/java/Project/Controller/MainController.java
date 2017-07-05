@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static java.lang.Math.floor;
 
 @Controller
 public class MainController {
@@ -61,6 +64,22 @@ public class MainController {
         return "Main/forum";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "plans")
+    public String plans(ModelMap modelMap, HttpSession httpSession) {
+
+        if (httpSession.getAttribute("User") == null) {
+            return "redirect:/";
+        }
+
+        User user = (User) httpSession.getAttribute("User");
+
+        List<Planning> listPlanning = planningService.get(user);
+
+        modelMap.addAttribute("listPlanning", listPlanning);
+
+        return "Main/planning";
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "article/{articleId}")
     public String article(@PathVariable(value = "articleId") int id, ModelMap modelMap, HttpSession httpSession) {
 
@@ -71,6 +90,34 @@ public class MainController {
         modelMap.addAttribute("article", article);
         modelMap.addAttribute("Message", new Message());
         return "Main/article";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "planning/{planningId}")
+    public String plan(@PathVariable(value = "planningId") int id, ModelMap modelMap, HttpSession httpSession) {
+
+        if (httpSession.getAttribute("User") == null) {
+            return "redirect:/";
+        }
+
+        Planning planning = planningService.getPlanning(id);
+
+        List<Seance> listSeance = planning.getSeances();
+
+        System.out.println(listSeance);
+
+        int diff = calcDate(planning.getDate_debut(), planning.getDate_fin());
+
+        double nbSemaine = 0.0;
+        nbSemaine = floor(diff / 7);
+        nbSemaine++;
+
+
+
+
+        modelMap.addAttribute("planning", planning);
+        modelMap.addAttribute("listSeance", listSeance);
+        modelMap.addAttribute("nbSemaine", nbSemaine);
+        return "Main/detailPlanning";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "generator")
@@ -85,13 +132,14 @@ public class MainController {
 
         List<TypeCourse> listTypeCourse = typeCourseService.getAll();
 
+
         modelMap.addAttribute("Planning", planning);
         modelMap.addAttribute("listTypeCourse", listTypeCourse);
         return "Main/generator";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addPlanning")
-    public String addPlanning(@RequestParam(value = "typeCourse_id") Integer typeCourse_id, @ModelAttribute("Planning") @Valid Planning planning, BindingResult result, ModelMap modelMap, HttpSession httpSession) {
+    public String addPlanning(@RequestParam(value = "typeCourse_id") Integer typeCourse_id, @RequestParam(value = "nb_semaine") Integer nb_semaine, @ModelAttribute("Planning") @Valid Planning planning, BindingResult result, ModelMap modelMap, HttpSession httpSession) {
 
         User user = (User) httpSession.getAttribute("User");
 
@@ -102,11 +150,11 @@ public class MainController {
 
         planning.setTypeCourse(typeCourseService.get(typeCourse_id));
         planning.setUser(user);
+        planning.setNb_semaine(nb_semaine);
 
         planning.setSeances(seanceService.get(planning.getUser().getVMA(), typeCourse_id));
 
         planningService.add(planning);
-
 
 
         return "redirect:/";
@@ -171,16 +219,6 @@ public class MainController {
         return "Main/signup";
     }
 
-    /*@RequestMapping(method = RequestMethod.GET, value = "generator")
-    public String generator(ModelMap modelMap, HttpSession httpSession) {
-        modelMap.addAttribute("User", httpSession.getAttribute("User"));
-
-        if (httpSession.getAttribute("User") == null) {
-            return "redirect:/";
-        }
-
-        return "Main/generator";
-    }*/
 
     @RequestMapping(method = RequestMethod.POST, value = "/getUser")
     public String getUser(@RequestParam(value = "email") String email, @RequestParam(value = "pwd") String pwd, ModelMap modelMap, HttpSession httpSession) {
@@ -238,10 +276,12 @@ public class MainController {
         return new ShaPasswordEncoder(512).encodePassword(plainPassword, null);
     }
 
-    public static Integer generatePlanning(Planning planning) {
+    public static Integer calcDate(java.util.Date date1, java.util.Date date2) {
 
+        int diffInDays = (int) ((date2.getTime() - date1.getTime())
+                / (1000 * 60 * 60 * 24));
 
-        return 0;
+        return diffInDays;
     }
 
 }

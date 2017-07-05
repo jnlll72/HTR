@@ -46,6 +46,12 @@ public class Seance implements Serializable {
     @Setter
     private Integer rep_min;
 
+    @Column(name="difficulte")
+    @DecimalMax("20.0")
+    @Getter
+    @Setter
+    private Integer difficulte;
+
     @Column(name = "rep_max")
     @DecimalMax("20.0")
     @Getter

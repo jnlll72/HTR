@@ -17,11 +17,11 @@ public class SeanceDAOImpl implements SeanceDAO {
     @Override
     public List<Seance> get(double vma, Integer typeCourse_id) {
 
-        String hql = "FROM Seance WHERE vma_max = 13 AND typeCourse_id = 1";
+        String hql = "FROM Seance WHERE vma_max = :vma OR vma_max = :vma2 AND typeCourse_id = :typeCourse";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        /*query.setParameter("vma1", vma);
-        query.setParameter("vma2", vma);
-        query.setParameter("typeCourse_id", typeCourse_id);*/
+        query.setParameter("vma", vma);
+        query.setParameter("vma2", vma - 1);
+        query.setParameter("typeCourse", typeCourse_id);
 
         @SuppressWarnings("unchecked")
         List<Seance> results = Collections.checkedList(query.list(), Seance.class);

@@ -2,13 +2,11 @@ package Project.Model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -55,7 +53,7 @@ public class Planning implements Serializable {
     @NotNull
     private Integer nb_semaine;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "SeancePlanning", joinColumns = {
             @JoinColumn(name = "planning_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "seance_id",

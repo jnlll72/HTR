@@ -37,7 +37,11 @@
         <div class="form-group">
             <label class="col-lg-2 control-label">Séances / semaine*</label>
             <div class="col-lg-10">
-                <form:input type="number" class="form-control" path="nb_semaine" placeholder=""/>
+                <select class="form-control" name="nb_semaine" id="nb_semaine">
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

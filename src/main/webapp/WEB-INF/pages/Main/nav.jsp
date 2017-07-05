@@ -33,6 +33,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="/JLG/account">Mon compte</a></li>
+                            <li><a href="/JLG/plans">Mes plans</a></li>
                             <li class="divider"></li>
                             <li><a href="/JLG/logout">Déconnexion</a></li>
                         </ul>
